@@ -19,19 +19,15 @@ loop = asyncio.get_event_loop()
 @app.on_message(filters.command(["song", f"song@{BOT_USERNAME}"]))
 @PermissionCheck
 async def play(_, message: Message):
-    if message.chat.type == "private":
-        pass
-    else:
-        if message.sender_chat:
-            return await message.reply_text(
-                "Anda adalah __Admin Anonim__ di Grup Obrolan ini!\nKembali ke Akun Pengguna Dari Hak Admin."
-            )
+    if message.chat.type != "private" and message.sender_chat:
+        return await message.reply_text(
+            "Anda adalah __Admin Anonim__ di Grup Obrolan ini!\nKembali ke Akun Pengguna Dari Hak Admin."
+        )
     try:
         await message.delete()
     except:
         pass
-    url = get_url(message)
-    if url:
+    if url := get_url(message):
         mystic = await message.reply_text("🔄 Memproses URL... Harap Tunggu!")
         query = message.text.split(None, 1)[1]
         (
@@ -45,11 +41,6 @@ async def play(_, message: Message):
             return await mystic.edit("Sorry! Its a Live Video")
         await mystic.delete()
         buttons = song_download_markup(videoid, message.from_user.id)
-        return await message.reply_photo(
-            photo=thumb,
-            caption=f"📎Judul: **{title}\n\n⏳Durasi:** {duration_min} Mins\n\n__[Dapatkan Informasi Tambahan Tentang Video](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
-            reply_markup=InlineKeyboardMarkup(buttons),
-        )
     else:
         if len(message.command) < 2:
             await message.reply_text(
@@ -71,11 +62,11 @@ async def play(_, message: Message):
         buttons = song_markup(
             videoid, duration_min, message.from_user.id, query, 0
         )
-        return await message.reply_photo(
-            photo=thumb,
-            caption=f"📎Judul: **{title}\n\n⏳Durasi:** {duration_min} Mins\n\n__[Dapatkan Informasi Tambahan Tentang Video](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
-            reply_markup=InlineKeyboardMarkup(buttons),
-        )
+    return await message.reply_photo(
+        photo=thumb,
+        caption=f"📎Judul: **{title}\n\n⏳Durasi:** {duration_min} Mins\n\n__[Dapatkan Informasi Tambahan Tentang Video](https://t.me/{BOT_USERNAME}?start=info_{videoid})__",
+        reply_markup=InlineKeyboardMarkup(buttons),
+    )
 
 
 @app.on_callback_query(filters.regex("qwertyuiopasdfghjkl"))
@@ -105,10 +96,7 @@ async def song_right(_, CallbackQuery):
     what = str(what)
     type = int(type)
     if what == "F":
-        if type == 9:
-            query_type = 0
-        else:
-            query_type = int(type + 1)
+        query_type = 0 if type == 9 else int(type + 1)
         await CallbackQuery.answer("Mendapatkan Hasil Selanjutnya", show_alert=True)
         (
             title,
@@ -130,10 +118,7 @@ async def song_right(_, CallbackQuery):
             media=med, reply_markup=InlineKeyboardMarkup(buttons)
         )
     if what == "B":
-        if type == 0:
-            query_type = 9
-        else:
-            query_type = int(type - 1)
+        query_type = 9 if type == 0 else int(type - 1)
         await CallbackQuery.answer("Getting Previous Result", show_alert=True)
         (
             title,

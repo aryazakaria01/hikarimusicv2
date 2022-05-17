@@ -22,19 +22,18 @@ async def unban_assistant_(_, CallbackQuery):
             "Saya tidak memiliki izin pengguna untuk melarang/membatalkan larangan. Minta admin mana pun untuk membatalkan pencekalan asisten.",
             show_alert=True,
         )
-    else:
-        try:
-            await app.unban_chat_member(
-                CallbackQuery.message.chat.id, user_id
-            )
-        except:
-            return await CallbackQuery.answer(
-                "Gagal membatalkan pencekalan",
-                show_alert=True,
-            )
-        return await CallbackQuery.edit_message_text(
-            "Asisten Tidak Dicekal. Coba Mainkan Sekarang."
+    try:
+        await app.unban_chat_member(
+            CallbackQuery.message.chat.id, user_id
         )
+    except:
+        return await CallbackQuery.answer(
+            "Gagal membatalkan pencekalan",
+            show_alert=True,
+        )
+    return await CallbackQuery.edit_message_text(
+        "Asisten Tidak Dicekal. Coba Mainkan Sekarang."
+    )
 
 
 def AssistantAdd(mystic):

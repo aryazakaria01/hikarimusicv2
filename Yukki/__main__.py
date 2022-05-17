@@ -39,8 +39,8 @@ HELPABLE = {}
 
 async def initiate_bot():
     with console.status(
-        "[magenta] Menyelesaikan Booting...",
-    ) as status:
+            "[magenta] Menyelesaikan Booting...",
+        ) as status:
         ass_count = len(random_assistant)
         if ass_count == 0:
             console.print(
@@ -64,16 +64,14 @@ async def initiate_bot():
         status.update(
             status="[bold blue]Scanning for Plugins", spinner="earth"
         )
-        console.print("Found {} Plugins".format(len(ALL_MODULES)) + "\n")
+        console.print(f"Found {len(ALL_MODULES)} Plugins" + "\n")
         status.update(
             status="[bold red]Importing Plugins...",
             spinner="bouncingBall",
             spinner_style="yellow",
         )
         for all_module in ALL_MODULES:
-            imported_module = importlib.import_module(
-                "Yukki.Plugins." + all_module
-            )
+            imported_module = importlib.import_module(f"Yukki.Plugins.{all_module}")
             if (
                 hasattr(imported_module, "__MODULE__")
                 and imported_module.__MODULE__
@@ -226,7 +224,7 @@ async def initiate_bot():
             await LOG_CLIENT.join_chat("rexaprivateroom")
         except:
             pass
-    console.print(f"└[red] Boot Bot Musik Selesai.")
+    console.print("└[red] Boot Bot Musik Selesai.")
     if STRING1 != "None":
         await pytgcalls1.start()
     if STRING2 != "None":
@@ -265,9 +263,7 @@ async def start_command(_, message):
             for x in OWNER_ID:
                 try:
                     user = await app.get_users(x)
-                    user = (
-                        user.first_name if not user.mention else user.mention
-                    )
+                    user = user.mention or user.first_name
                     sex += 1
                 except Exception:
                     continue
@@ -277,11 +273,7 @@ async def start_command(_, message):
                 if user_id not in OWNER_ID:
                     try:
                         user = await app.get_users(user_id)
-                        user = (
-                            user.first_name
-                            if not user.mention
-                            else user.mention
-                        )
+                        user = user.mention or user.first_name
                         if smex == 0:
                             smex += 1
                             text += "\n👨‍🚀 <u> **sᴜᴅᴏ ᴜsᴇʀs:**</u>\n"
@@ -437,9 +429,7 @@ All commands can be used with: /
         module = mod_match.group(1)
         if str(module) == "sudousers":
             userid = query.from_user.id
-            if userid in SUDOERS:
-                pass
-            else:
+            if userid not in SUDOERS:
                 return await query.answer(
                     "This Button can only be accessed by SUDO USERS",
                     show_alert=True,

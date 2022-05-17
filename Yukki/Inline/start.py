@@ -27,21 +27,21 @@ def setting_markup2():
 
 
 def start_pannel():
-    if not SUPPORT_CHANNEL and not SUPPORT_GROUP:
-        buttons = [
-            [
-                InlineKeyboardButton(
-                    text="📋 Menu Perintah", callback_data="shikhar"
-                ),
-            ],
-            [
-                InlineKeyboardButton(
-                    text="⚙️ Pengaturan", callback_data="settingm"
-                )
-            ],
-        ]
-        return f"🎛  **Ini Adalah {MUSIC_BOT_NAME}**", buttons
-    if not SUPPORT_CHANNEL and SUPPORT_GROUP:
+    if not SUPPORT_CHANNEL:
+        if not SUPPORT_GROUP:
+            buttons = [
+                [
+                    InlineKeyboardButton(
+                        text="📋 Menu Perintah", callback_data="shikhar"
+                    ),
+                ],
+                [
+                    InlineKeyboardButton(
+                        text="⚙️ Pengaturan", callback_data="settingm"
+                    )
+                ],
+            ]
+            return f"🎛  **Ini Adalah {MUSIC_BOT_NAME}**", buttons
         buttons = [
             [
                 InlineKeyboardButton(
@@ -60,7 +60,7 @@ def start_pannel():
             ],
         ]
         return f"🎛  **Ini Adalah {MUSIC_BOT_NAME}*", buttons
-    if SUPPORT_CHANNEL and not SUPPORT_GROUP:
+    if not SUPPORT_GROUP:
         buttons = [
             [
                 InlineKeyboardButton(
@@ -79,7 +79,7 @@ def start_pannel():
             ],
         ]
         return f"🎛  **Ini Adalah {MUSIC_BOT_NAME}**", buttons
-    if SUPPORT_CHANNEL and SUPPORT_GROUP:
+    if SUPPORT_CHANNEL:
         buttons = [
             [
                 InlineKeyboardButton(
@@ -104,23 +104,23 @@ def start_pannel():
 
 
 def private_panel():
-    if not SUPPORT_CHANNEL and not SUPPORT_GROUP:
-        buttons = [
-            [
-                InlineKeyboardButton(
-                    text="📋 Menu Perintah",
-                    callback_data="search_helper_mess",
-                ),
-            ],
-            [
-                InlineKeyboardButton(
-                    "➕ Tambahkan Ke Group",
-                    url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
-                )
-            ],
-        ]
-        return f"🎛  **Ini Adalah {MUSIC_BOT_NAME}**", buttons
-    if not SUPPORT_CHANNEL and SUPPORT_GROUP:
+    if not SUPPORT_CHANNEL:
+        if not SUPPORT_GROUP:
+            buttons = [
+                [
+                    InlineKeyboardButton(
+                        text="📋 Menu Perintah",
+                        callback_data="search_helper_mess",
+                    ),
+                ],
+                [
+                    InlineKeyboardButton(
+                        "➕ Tambahkan Ke Group",
+                        url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
+                    )
+                ],
+            ]
+            return f"🎛  **Ini Adalah {MUSIC_BOT_NAME}**", buttons
         buttons = [
             [
                 InlineKeyboardButton(
@@ -141,7 +141,7 @@ def private_panel():
             ],
         ]
         return f"🎛  **Ini Adalah {MUSIC_BOT_NAME}*", buttons
-    if SUPPORT_CHANNEL and not SUPPORT_GROUP:
+    if not SUPPORT_GROUP:
         buttons = [
             [
                 InlineKeyboardButton(
@@ -162,7 +162,7 @@ def private_panel():
             ],
         ]
         return f"🎛  **This is {MUSIC_BOT_NAME}**", buttons
-    if SUPPORT_CHANNEL and SUPPORT_GROUP:
+    if SUPPORT_CHANNEL:
         buttons = [
             [
                 InlineKeyboardButton(
