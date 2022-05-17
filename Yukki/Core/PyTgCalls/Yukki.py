@@ -56,7 +56,7 @@ async def join_stream(chat_id: int, file_path: str):
                         file_path,
                     ),
                 ),
-                stream_type=StreamType().local_stream,
+                stream_type=StreamType().pulse_stream,
             )
             return True
         except:
@@ -70,7 +70,7 @@ async def join_stream(chat_id: int, file_path: str):
                         file_path,
                     ),
                 ),
-                stream_type=StreamType().local_stream,
+                stream_type=StreamType().pulse_stream,
             )
             return True
         except:
@@ -84,7 +84,7 @@ async def join_stream(chat_id: int, file_path: str):
                         file_path,
                     ),
                 ),
-                stream_type=StreamType().local_stream,
+                stream_type=StreamType().pulse_stream,
             )
             return True
         except:
@@ -98,7 +98,7 @@ async def join_stream(chat_id: int, file_path: str):
                         file_path,
                     ),
                 ),
-                stream_type=StreamType().local_stream,
+                stream_type=StreamType().pulse_stream,
             )
             return True
         except:
@@ -112,7 +112,7 @@ async def join_stream(chat_id: int, file_path: str):
                         file_path,
                     ),
                 ),
-                stream_type=StreamType().local_stream,
+                stream_type=StreamType().pulse_stream,
             )
             return True
         except:
@@ -226,7 +226,7 @@ async def join_video_stream(chat_id: int, link: str, quality):
                     HighQualityAudio(),
                     stream_quality,
                 ),
-                stream_type=StreamType().local_stream,
+                stream_type=StreamType().pulse_stream,
             )
             return True
         except Exception as e:
@@ -241,7 +241,7 @@ async def join_video_stream(chat_id: int, link: str, quality):
                     HighQualityAudio(),
                     stream_quality,
                 ),
-                stream_type=StreamType().local_stream,
+                stream_type=StreamType().pulse_stream,
             )
             return True
         except Exception as e:
@@ -256,7 +256,7 @@ async def join_video_stream(chat_id: int, link: str, quality):
                     HighQualityAudio(),
                     stream_quality,
                 ),
-                stream_type=StreamType().local_stream,
+                stream_type=StreamType().pulse_stream,
             )
             return True
         except:
@@ -270,7 +270,7 @@ async def join_video_stream(chat_id: int, link: str, quality):
                     HighQualityAudio(),
                     stream_quality,
                 ),
-                stream_type=StreamType().local_stream,
+                stream_type=StreamType().pulse_stream,
             )
             return True
         except:
@@ -284,7 +284,7 @@ async def join_video_stream(chat_id: int, link: str, quality):
                     HighQualityAudio(),
                     stream_quality,
                 ),
-                stream_type=StreamType().local_stream,
+                stream_type=StreamType().pulse_stream,
             )
             return True
         except:
